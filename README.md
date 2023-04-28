@@ -1,3 +1,5 @@
+![Hero Image](https://repository-images.githubusercontent.com/633787581/695bc1a9-6fb8-4b93-a96d-84817e4f88e2)
+
 # Library Management System
 
 The Library Management System is a program written in C that allows you to manage books, borrowers, and authors. With this application, you can easily add, update, and delete information in a simple and straightforward manner.
