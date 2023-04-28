@@ -1,2 +1,10 @@
-dfsdsfg, 3
-funny, 2
+Jane Austen, 1
+F. Scott Fitzgerald, 1
+George Orwell, 1
+Harper Lee, 1
+Ray Bradbury, 1
+J.K. Rowling, 1
+Ernest Hemingway, 1
+Aldous Huxley, 1
+Charles Dickens, 1
+Mark Twain, 1
