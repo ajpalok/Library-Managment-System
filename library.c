@@ -59,7 +59,7 @@ void BorrowerMenuOptions();
 void AuthorMenuOptions();
 
 //////////////////////////////
-// books functions prototype
+// Books functions prototype
 //////////////////////////////
 
 void showBooks();
@@ -67,18 +67,27 @@ void addBook();
 void updateBook();
 void deleteBook();
 
-///////////////////////////////
-// borrower functions prototype
-///////////////////////////////
+/////////////////////////////////
+// Borrower functions prototype
+/////////////////////////////////
 
 void showBorrowers();
 void addBorrower();
 void updateBorrower();
 void deleteBorrower();
 
-////////////////
-// Main Function
-////////////////
+////////////////////////////////
+// Author functions prototype //
+////////////////////////////////
+
+void showAuthors();
+void addAuthors();
+void updateAuthor();
+void deleteAuthor();
+
+///////////////////
+// Main Function //
+///////////////////
 int main()
 {
     clearConsole();
@@ -166,16 +175,16 @@ int main()
                                 clearConsole();
                                 break;
                             case 1:
-                                // books(books, &bookCount);
+                                showAuthors();
                                 break;
                             case 2:
-                                // addBook(books, &bookCount);
+                                addAuthors();
                                 break;
                             case 3:
-                                // updateBook(books, bookCount);
+                                updateAuthor();
                                 break;
                             case 4:
-                                // deleteBook(books, &bookCount);
+                                deleteAuthor();
                                 break;
                             default:
                                 strcpy(data,"Invalid choice. Please try again.");
@@ -616,8 +625,6 @@ void updateBorrower(){
         remove("temp.txt");
         printf("Borrower not found.\n");
     }
-    
-    strcpy(data,"Borrower updated successfully.");
 }
 
 //////////////////
@@ -662,4 +669,182 @@ void deleteBorrower() {
 
     strcpy(data,"Borrower deleted successfully.");
 }
-/**/
+
+
+/////////////////
+// Show Authors
+/////////////////
+
+void showAuthors(){
+    clearConsole();
+// add data from user input to struct of Author and save it to authors.txt
+    int run = 1, serial = 0;
+    do{
+        FILE *readfile;
+        readfile = fopen("authors.txt", "r");
+        if (readfile == NULL) {
+        printf("Error opening file.\n");
+        return;
+    }
+        puts("==========\nAuthors:\n==========");
+        char line[100];
+        while (fgets(line, 100, readfile)){
+            printf("%d.\n",++serial);
+            char *info = strtok(line, ",");
+            printf("\tName: %s\n", info);
+            info = strtok(NULL, ",");
+            printf("\tTotal Book/s Available: %s\n\n", info);
+        }
+        fclose(readfile);
+        serial = 0;
+
+        puts("\n\nEnter 0 to go back: ");
+        scanf("%d", &run);
+        getchar(); // consume the newline character left in the input buffer
+        if (run != 0){
+            clearConsole();
+            puts("Invalid input. Please try again.\n");
+        };
+    } while (run != 0);
+}
+
+////////////////
+// Add Authors
+////////////////
+void addAuthors(){
+    clearConsole();
+    puts("==================\nAdd Author Data:\n==================");
+    FILE *writefile;
+    writefile = fopen("authors.txt", "a");
+    
+    struct Author b1;
+
+    printf("Name: ");
+    fgets(b1.name, 100, stdin);
+    b1.name[strcspn(b1.name, "\n")] = '\0'; // remove newline character from fgets
+
+
+    // printf("Author: ");
+    // fgets(b1.author, 100, stdin);
+    // b1.author[strcspn(b1.author, "\n")] = '\0'; // remove newline character from fgets
+
+    printf("Total Book/s Found: ");
+    scanf("%d", &b1.bookCount);
+    getchar(); // consume the newline character left in the input buffer
+    
+    
+    fprintf(writefile, "%s, %d\n", b1.name, b1.bookCount);
+    
+    strcpy(data,"Author added successfully.");
+
+    fclose(writefile);
+}
+
+///////////////////
+// Update Authors
+///////////////////
+
+void updateAuthor(){
+    clearConsole();
+    printf("=====================\nUpdate Author Data:\n=====================\n");
+    FILE *readfile, *writefile;
+    readfile = fopen("authors.txt", "r");
+    writefile = fopen("temp.txt", "w");
+    checkFileExists("authors.txt");
+    checkFileExists("temp.txt");
+
+    printf("Enter Author name to update: ");
+    char searchName[100];
+    fgets(searchName, 100, stdin);
+    searchName[strcspn(searchName, "\n")] = '\0'; // remove the newline character from the search string
+
+    char line[256], temp[256];
+    char *pos;
+
+    // search for the Author name in the file
+    int AuthorFound = 0;
+    while(fgets(line, sizeof(line), readfile)){
+        strcpy(temp, line);
+        pos = strstr(line, searchName);
+        if (pos != NULL && strtok(line, ",") != NULL && strcmp(strtok(line, ","), searchName) == 0){
+            // update the Author data
+            struct Author b1;
+
+            printf("Edit Author Title: ");
+            fgets(b1.name, 100, stdin);
+            b1.name[strcspn(b1.name, "\n")] = '\0'; // remove newline character from fgets
+
+            // printf("Edit Author Author: ");
+            // fgets(b1.author, 100, stdin);
+            // b1.author[strcspn(b1.author, "\n")] = '\0'; // remove newline character from fgets
+
+            printf("Edit Author quantity: ");
+            scanf("%d", &b1.bookCount);
+            getchar(); // consume the newline character left in the input buffer
+
+            // write the updated Author data to the temp file
+            fprintf(writefile, "%s, %d\n", b1.name, b1.bookCount);
+            AuthorFound = 1;
+        }
+        else {
+            // write the original Author data to the temp file
+            fprintf(writefile, "%s", temp);
+        }
+    }
+
+    fclose(readfile);
+    fclose(writefile);
+
+    // replace the original file with the temp file
+    if (AuthorFound) {
+        remove("authors.txt");
+        rename("temp.txt", "authors.txt");
+        strcpy(data,"Author updated successfully.");
+    }
+    else {
+        remove("temp.txt");
+        printf("Author not found.\n");
+    }
+}
+
+//////////////////
+// Delete Author
+//////////////////
+
+void deleteAuthor() {
+    clearConsole();
+    printf("=================\nDelete Author Data:\n=================\n");
+    FILE *readfile, *tempfile;
+    readfile = fopen("authors.txt", "r");
+    tempfile = fopen("temp.txt", "w");
+    if (readfile == NULL || tempfile == NULL) {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    printf("Enter Author name to delete: ");
+    char searchName[100];
+    fgets(searchName, 100, stdin);
+    searchName[strcspn(searchName, "\n")] = '\0'; // remove the newline character from the search string
+
+    char line[256], temp[256];
+    char *pos;
+
+    // copy all the lines except the one to delete to the temporary file
+    while (fgets(line, sizeof(line), readfile)) {
+        strcpy(temp, line);
+        pos = strstr(line, searchName);
+        if (pos == NULL && strtok(line, ",") != NULL || strcmp(strtok(line, ","), searchName) != 0){
+            fprintf(tempfile, "%s", temp);
+        }
+    }
+
+    fclose(readfile);
+    fclose(tempfile);
+
+    // delete the original file and rename the temporary file to the original file's name
+    remove("authors.txt");
+    rename("temp.txt", "authors.txt");
+
+    strcpy(data,"Author deleted successfully.");
+}
