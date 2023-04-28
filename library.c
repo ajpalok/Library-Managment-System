@@ -4,8 +4,6 @@
 // authors, and borrowers. Use structures to
 // store library data and a file to save and
 // load the data.
-//
-//      gcc library.c -o 1 && .\1
 
 #include <stdio.h>
 #include <string.h>
@@ -14,18 +12,21 @@
 //////////////////////
 // Global variables //
 //////////////////////
+
 char data[100]="";
 
 
 /////////////////////
 // books structure //
 /////////////////////
+
 struct Book
 {
     char title[100];
     char author[100];
     int quantity;
 };
+
 /////////////////////////
 // borrowers structure //
 /////////////////////////
@@ -44,10 +45,12 @@ struct Author
 };
 
 // Function to clear console using ncurses library
+
 void clearConsole() {
     if(system("cls")==0) system("cls");
     else system("clear");
 }
+
 /////////////////////////
 // functions prototype //
 /////////////////////////
@@ -88,6 +91,7 @@ void deleteAuthor();
 ///////////////////
 // Main Function //
 ///////////////////
+
 int main()
 {
     clearConsole();

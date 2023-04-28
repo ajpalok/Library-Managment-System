@@ -91,7 +91,15 @@ clang library.c -o library && ./library
 - [x] Make loop to print menu items until it is commanded to stop or exit.
 - [x] Create prototype functions to outline the whole program.
 - [x] Add code to the functions to make them functional.
+- [ ] Checking Data already exists or not.
 - [ ] Create relations between functions to update all data in each data change.
+
+# Contrubutors
+
+- [Abrar Jahin](https://github.com/ajpalok)
+- Sumaya Zaman
+- Rumana Radia Urmi
+- Meheruna Afsar Jenin
 
 # License
 This project is licensed under the MIT License.
