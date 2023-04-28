@@ -11,24 +11,24 @@
 #include <string.h>
 #include <stdlib.h>
 
-/////////////////////
-// Global variables
-/////////////////////
+//////////////////////
+// Global variables //
+//////////////////////
 char data[100]="";
 
 
-////////////////////
-// books structure
-////////////////////
+/////////////////////
+// books structure //
+/////////////////////
 struct Book
 {
     char title[100];
     char author[100];
     int quantity;
 };
-////////////////////////
-// borrowers structure
-////////////////////////
+/////////////////////////
+// borrowers structure //
+/////////////////////////
 
 struct Borrower
 {
@@ -48,9 +48,9 @@ void clearConsole() {
     if(system("cls")==0) system("cls");
     else system("clear");
 }
-///////////////////////
-// functions prototype
-///////////////////////
+/////////////////////////
+// functions prototype //
+/////////////////////////
 
 int checkFileExists(char *filename);
 void MainMenuOptions();
@@ -58,18 +58,18 @@ void BookMenuOptions();
 void BorrowerMenuOptions();
 void AuthorMenuOptions();
 
-//////////////////////////////
-// Books functions prototype
-//////////////////////////////
+///////////////////////////////
+// Books functions prototype //
+///////////////////////////////
 
 void showBooks();
 void addBook();
 void updateBook();
 void deleteBook();
 
-/////////////////////////////////
-// Borrower functions prototype
-/////////////////////////////////
+//////////////////////////////////
+// Borrower functions prototype //
+//////////////////////////////////
 
 void showBorrowers();
 void addBorrower();
@@ -201,9 +201,9 @@ int main()
     return 0;
 }
 
-/////////////////////////////////////
-// checks if file.txt exists or not
-/////////////////////////////////////
+//////////////////////////////////////
+// checks if file.txt exists or not //
+//////////////////////////////////////
 
 int checkFileExists(char *filename)
 {
@@ -221,14 +221,14 @@ int checkFileExists(char *filename)
     }
 }
 
-//////////////////////
-// Main Menu Options
-//////////////////////
+///////////////////////
+// Main Menu Options //
+///////////////////////
 
 void MainMenuOptions(){
-    puts("=========================");
-    puts("Library Management System");
-    puts("=========================");
+    puts("///////////////////////////////");
+    puts("// Library Management System //");
+    puts("///////////////////////////////\n");
     puts("1. Books");
     puts("2. Borrowers");
     puts("3. Authors");
@@ -241,20 +241,20 @@ void MainMenuOptions(){
     printf("Enter your choice: ");
 }
 
-//////////////////////
-// Book Menu Options
-//////////////////////
+///////////////////////
+// Book Menu Options //
+///////////////////////
 
 void BookMenuOptions(){
     clearConsole();
-    printf("=============\n");
-    printf("Books Section\n");
-    printf("=============\n");
-    printf("1. Show Books\n");
-    printf("2. Add Book\n");
-    printf("3. Update Book\n");
-    printf("4. Delete Book\n");
-    printf("0. Back\n");
+    puts("///////////////////");
+    puts("// Books Section //");
+    puts("///////////////////\n");
+    puts("1. Show Books");
+    puts("2. Add Book");
+    puts("3. Update Book");
+    puts("4. Delete Book");
+    puts("0. Back");
     //  check if data not empty
     if (strcmp(data,"")!=0){
         puts(data);
@@ -263,20 +263,20 @@ void BookMenuOptions(){
     printf("Enter your choice: ");
 }
 
-//////////////////////////
-// Borrower Menu Options
-//////////////////////////
+///////////////////////////
+// Borrower Menu Options //
+///////////////////////////
 
 void BorrowerMenuOptions(){
     clearConsole();
-    printf("=========\n");
-    printf("Borrowers\n");
-    printf("=========\n");
-    printf("1. Show Borrowers\n");
-    printf("2. Add Borrower\n");
-    printf("3. Update Borrower\n");
-    printf("4. Delete Borrower\n");
-    printf("0. Back\n");
+    puts("///////////////");
+    puts("// Borrowers //");
+    puts("///////////////\n");
+    puts("1. Show Borrowers");
+    puts("2. Add Borrower");
+    puts("3. Update Borrower");
+    puts("4. Delete Borrower");
+    puts("0. Back");
     //  check if data not empty
     if (strcmp(data,"")!=0){
         puts(data);
@@ -285,20 +285,21 @@ void BorrowerMenuOptions(){
     printf("Enter your choice: ");
 }
 
-////////////////////////
-// Author Menu Options
-////////////////////////
+/////////////////////////
+// Author Menu Options //
+/////////////////////////
 
 void AuthorMenuOptions(){
     clearConsole();
-    printf("=======\n");
-    printf("Authors\n");
-    printf("=======\n");
-    printf("1. Show Authors\n");
-    printf("2. Add Author\n");
-    printf("3. Update Author\n");
-    printf("4. Delete Author\n");
-    printf("0. Back\n");
+    puts("/////////////");
+    puts("// Authors //");
+    puts("/////////////");
+    puts("/////////////\n");
+    puts("1. Show Authors");
+    puts("2. Add Author");
+    puts("3. Update Author");
+    puts("4. Delete Author");
+    puts("0. Back");
     //  check if data not empty
     if (strcmp(data,"")!=0){
         puts(data);
@@ -307,9 +308,9 @@ void AuthorMenuOptions(){
     printf("Enter your choice: ");
 }
 
-///////////////
-// Show Books
-///////////////
+////////////////
+// Show Books //
+////////////////
 
 void showBooks(){
     clearConsole();
@@ -320,7 +321,9 @@ void showBooks(){
         FILE *readfile;
         readfile = fopen("books.txt", "r");
         
-        puts("======\nBooks:\n======");
+        puts("////////////");
+        puts("// Books: //");
+        puts("////////////\n");
         // puts("Title\t\tAuthor\t\tQuantity");
         char line[100];
         while (fgets(line, 100, readfile)){
@@ -346,13 +349,15 @@ void showBooks(){
     } while (run != 0);
 }
 
-////////////
-// Add Books
-////////////
+///////////////
+// Add Books //
+///////////////
 
 void addBook(){
     clearConsole();
-    puts("==============\nAdd Book Data:\n==============");
+    puts("////////////////////");
+    puts("// Add Book Data: //");
+    puts("////////////////////\n");
     checkFileExists("books.txt");
     FILE *writefile;
     writefile = fopen("books.txt", "a");
@@ -379,13 +384,15 @@ void addBook(){
     fclose(writefile);
 }
 
-///////////////
-// Update Books
-///////////////
+//////////////////
+// Update Books //
+//////////////////
 
 void updateBook(){
     clearConsole();
-    printf("=================\nUpdate Book Data:\n=================\n");
+    puts("///////////////////////");
+    puts("// Update Book Data: //");
+    puts("///////////////////////\n");
     checkFileExists("books.txt");
     checkFileExists("temp.txt");
     FILE *readfile, *writefile;
@@ -447,13 +454,15 @@ void updateBook(){
     }
 }
 
-//////////////
-// Delete Book
-//////////////
+/////////////////
+// Delete Book //
+/////////////////
 
 void deleteBook() {
     clearConsole();
-    printf("=================\nDelete Book Data:\n=================\n");
+    puts("///////////////////////");
+    puts("// Delete Book Data: //");
+    puts("///////////////////////\n");
     checkFileExists("books.txt");
     checkFileExists("temp.txt");
     FILE *readfile, *tempfile;
@@ -489,9 +498,9 @@ void deleteBook() {
 }
 
 
-/////////////////
-// Show Borrowers
-/////////////////
+////////////////////
+// Show Borrowers //
+////////////////////
 
 void showBorrowers(){
     clearConsole();
@@ -504,7 +513,9 @@ void showBorrowers(){
         printf("Error opening file.\n");
         return;
     }
-        puts("==========\nBorrowers:\n==========");
+        puts("////////////////");
+        puts("// Borrowers: //");
+        puts("////////////////\n");
         // puts("Title\t\tAuthor\t\tQuantity");
         char line[100];
         while (fgets(line, 100, readfile)){
@@ -528,12 +539,15 @@ void showBorrowers(){
     } while (run != 0);
 }
 
-////////////////
-// Add Borrowers
-////////////////
+///////////////////
+// Add Borrowers //
+///////////////////
+
 void addBorrower(){
     clearConsole();
-    puts("==================\nAdd Borrower Data:\n==================");
+    puts("////////////////////////");
+    puts("// Add Borrower Data: //");
+    puts("////////////////////////\n");
     FILE *writefile;
     writefile = fopen("borrowers.txt", "a");
     
@@ -560,13 +574,15 @@ void addBorrower(){
     fclose(writefile);
 }
 
-///////////////////
-// Update Borrowers
-///////////////////
+//////////////////////
+// Update Borrowers //
+//////////////////////
 
 void updateBorrower(){
     clearConsole();
-    printf("=====================\nUpdate Borrower Data:\n=====================\n");
+    puts("////////////////////////////");
+    puts("// Update Borrower Data: //");
+    puts("////////////////////////////\n");
     FILE *readfile, *writefile;
     readfile = fopen("borrowers.txt", "r");
     writefile = fopen("temp.txt", "w");
@@ -627,13 +643,15 @@ void updateBorrower(){
     }
 }
 
-//////////////////
-// Delete Borrower
-//////////////////
+/////////////////////
+// Delete Borrower //
+/////////////////////
 
 void deleteBorrower() {
     clearConsole();
-    printf("=================\nDelete Borrower Data:\n=================\n");
+    puts("///////////////////////////");
+    puts("// Delete Borrower Data: //");
+    puts("///////////////////////////\n");
     FILE *readfile, *tempfile;
     readfile = fopen("borrowers.txt", "r");
     tempfile = fopen("temp.txt", "w");
@@ -671,9 +689,9 @@ void deleteBorrower() {
 }
 
 
-/////////////////
-// Show Authors
-/////////////////
+//////////////////
+// Show Authors //
+//////////////////
 
 void showAuthors(){
     clearConsole();
@@ -686,7 +704,9 @@ void showAuthors(){
         printf("Error opening file.\n");
         return;
     }
-        puts("==========\nAuthors:\n==========");
+        puts("//////////////");
+        puts("// Authors: //");
+        puts("//////////////\n");
         char line[100];
         while (fgets(line, 100, readfile)){
             printf("%d.\n",++serial);
@@ -708,12 +728,15 @@ void showAuthors(){
     } while (run != 0);
 }
 
-////////////////
-// Add Authors
-////////////////
+/////////////////
+// Add Authors //
+/////////////////
+
 void addAuthors(){
     clearConsole();
-    puts("==================\nAdd Author Data:\n==================");
+    puts("//////////////////////");
+    puts("// Add Author Data: //");
+    puts("//////////////////////\n");
     FILE *writefile;
     writefile = fopen("authors.txt", "a");
     
@@ -740,13 +763,15 @@ void addAuthors(){
     fclose(writefile);
 }
 
-///////////////////
-// Update Authors
-///////////////////
+////////////////////
+// Update Authors //
+////////////////////
 
 void updateAuthor(){
     clearConsole();
-    printf("=====================\nUpdate Author Data:\n=====================\n");
+    puts("/////////////////////////");
+    puts("// Update Author Data: //");
+    puts("/////////////////////////\n");
     FILE *readfile, *writefile;
     readfile = fopen("authors.txt", "r");
     writefile = fopen("temp.txt", "w");
@@ -807,13 +832,15 @@ void updateAuthor(){
     }
 }
 
-//////////////////
-// Delete Author
-//////////////////
+///////////////////
+// Delete Author //
+///////////////////
 
 void deleteAuthor() {
     clearConsole();
-    printf("=================\nDelete Author Data:\n=================\n");
+    puts("/////////////////////////");
+    puts("// Delete Author Data: //");
+    puts("/////////////////////////\n");
     FILE *readfile, *tempfile;
     readfile = fopen("authors.txt", "r");
     tempfile = fopen("temp.txt", "w");
