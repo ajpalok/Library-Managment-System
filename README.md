@@ -99,7 +99,7 @@ clang library.c -o library && ./library
 # Contrubutors
 
 - [Abrar Jahin](https://github.com/ajpalok)
-- Sumaya Zaman
+- [Sumaya Zaman](https://github.com/sztoma-dev)
 - Rumana Radia Urmi
 - Meheruna Afsar Jenin
 
