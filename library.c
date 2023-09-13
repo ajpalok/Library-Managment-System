@@ -342,7 +342,6 @@ void showBooks(){
         }
         fclose(readfile);
         count = 0;
-
         puts("\n\nEnter 0 to go back: ");
         scanf("%d", &run);
         getchar(); // consume the newline character left in the input buffer
@@ -382,9 +381,7 @@ void addBook(){
     
     
     fprintf(writefile, "%s, %s, %d\n", b1.title, b1.author, b1.quantity);
-    
     strcpy(data,"Book added successfully.");
-
     fclose(writefile);
 }
 
@@ -443,6 +440,7 @@ void updateBook(){
         }
     }
 
+    // File Closing
     fclose(readfile);
     fclose(writefile);
 
@@ -497,7 +495,6 @@ void deleteBook() {
     // delete the original file and rename the temporary file to the original file's name
     remove("books.txt");
     rename("temp.txt", "books.txt");
-
     strcpy(data,"Book deleted successfully.");
 }
 
@@ -632,6 +629,7 @@ void updateBorrower(){
         }
     }
 
+    // File Closing
     fclose(readfile);
     fclose(writefile);
 
@@ -761,9 +759,7 @@ void addAuthors(){
     
     
     fprintf(writefile, "%s, %d\n", b1.name, b1.bookCount);
-    
     strcpy(data,"Author added successfully.");
-
     fclose(writefile);
 }
 
@@ -821,6 +817,7 @@ void updateAuthor(){
         }
     }
 
+    // File Closing
     fclose(readfile);
     fclose(writefile);
 
@@ -870,12 +867,12 @@ void deleteAuthor() {
         }
     }
 
+    // File Closing
     fclose(readfile);
     fclose(tempfile);
 
     // delete the original file and rename the temporary file to the original file's name
     remove("authors.txt");
     rename("temp.txt", "authors.txt");
-
     strcpy(data,"Author deleted successfully.");
 }
